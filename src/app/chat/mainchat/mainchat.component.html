@@ -1,0 +1,58 @@
+
+
+<div class="content" role="main">
+  <div class="chat-container">
+    <div class="chat-header">
+        <h2>Agriculture - Tamil Chatbot</h2>
+    </div>
+
+    <div class="chat-messages"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <ng-container *ngFor="let message of messages">
+        <div *ngIf="message.type === 'user'" class="message user-message">
+          {{ message.message }}
+        </div>
+        <div *ngIf="message.type === 'bot'" class="message bot-message">
+          {{ message.message }}
+        </div>
+        <div *ngIf="message.type === 'image'" class="message user-message with-image">
+          <img [src]="message.message" alt="Uploaded Image">
+        </div>
+      </ng-container>
+    </div>
+    <div class="chat-input">
+
+      <form [formGroup]="chatForm" >
+        <div class="inpcomp">
+          <mat-form-field class="text-box">
+            <input matInput type="text" formControlName="userInput" placeholder="Type your message..." />
+            <!-- <textarea matInput formControlName="userInput" placeholder="Type your message..."></textarea> -->
+          </mat-form-field>
+          <div class="subbtn">
+            <button mat-raised-button color="primary"   (click)="sendMessage()">
+              Send
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+
+
+          <label for="image-upload" class="upload-icon">
+
+            <!-- <input type="file" id="image-upload" accept="image/*" (change)="onImageSelected($event)" style="display: none;" /> -->
+            <mat-icon>attach_file</mat-icon>
+            <input type="file" id="image-upload"   accept="image/*" (change)="onFileChange($event)" style="display: none;"  />
+
+          </label>
+
+        
+        </div>
+
+
+
+
+      </form>
+    </div>
+
+
+</div>
+</div>
+
